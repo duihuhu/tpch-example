@@ -9,9 +9,13 @@ The differences are in:
 """
 from ast import arg
 # import warnings
-
+import logging
 from symbol import arglist
 from warnings import simplefilter
+
+logging.captureWarnings(True)
+simplefilter(action='ignore', category=FutureWarning)
+simplefilter(action='ignore', category=DeprecationWarning)
 
 # warnings.filterwarnings('ignore', category='FutureWarning', module='modin')
 
@@ -875,7 +879,5 @@ def main(name):
     run_queries(path, name)
 
 if __name__ == "__main__":
-    simplefilter(action='ignore', category=FutureWarning)
-    simplefilter(action='ignore', category=DeprecationWarning)
 
     main(sys.argv[1])
