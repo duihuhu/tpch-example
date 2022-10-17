@@ -17,6 +17,7 @@ import modin.pandas as pd
 import time
 import sys
 import os
+os.environ["__MODIN_AUTOIMPORT_PANDAS__"] = "1"
 
 #ray.init()
 ray.init(address = "auto")
