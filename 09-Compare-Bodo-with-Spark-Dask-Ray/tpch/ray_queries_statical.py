@@ -16,7 +16,7 @@ import ray
 import modin.pandas as pd
 import time
 import sys
-
+import os
 
 #ray.init()
 ray.init(address = "auto")
@@ -24,11 +24,14 @@ ray.init(address = "auto")
 def run_time(func):
     def wrapper(*args, **kv):
             # print("args",args[1])
-            filename = str(args[1]) + "_runtime" + ".txt"
+            dirname = 'data'
             t1 = time.time()
             func(*args, **kv)
             t2 = time.time() - t1
             content = str(args[1]) + ':' + str(t2)
+            if not os.path.exists(dirname):
+                os.mkdir(dirname)
+            filename = dirname + '/' + str(args[1]) + "_runtime" + ".txt"
             with open(filename, 'a+') as fd:
                 fd.write(content+'\n')
             # print("current Function [%s] run time is %.2f" % (func.__name__ ,time.time() - t1))
