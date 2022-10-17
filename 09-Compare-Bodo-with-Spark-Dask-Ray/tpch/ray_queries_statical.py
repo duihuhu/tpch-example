@@ -9,6 +9,8 @@ The differences are in:
 """
 from ast import arg
 import warnings
+
+from symbol import arglist
 warnings.filterwarnings('ignore')
 import ray
 import modin.pandas as pd
@@ -22,11 +24,13 @@ ray.init(address = "auto")
 def run_time(func):
     def wrapper(*args, **kv):
             t1 = time.time()
+            print("args",args)
             func(*args, **kv)
             print("current Function [%s] run time is %.2f" % (func.__name__ ,time.time() - t1))
     return wrapper
 
-def run_queries(data_folder):
+def run_queries(data_folder, name):
+    query_name = 'q0' + str(name)
     # Load the data
     t1 = time.time()
     lineitem = load_lineitem(data_folder)
@@ -41,9 +45,10 @@ def run_queries(data_folder):
     t1 = time.time()
     # Run the Queries:
     # q01
-    q01(lineitem)
+    if query_name=="q01":
+        q01(lineitem)
     '''
-    # q2
+    # q02
     q02(part, partsupp, supplier, nation, region)
     # q03
     q03(lineitem, orders, customer)
@@ -819,10 +824,9 @@ def q22(customer, orders):
     print("Q22 Execution time (s): ", time.time() - t1)
 
 
-def main():
+def main(name):
     path = "/mnt/data/mdata"
-    run_queries(path)
+    run_queries(path, name)
 
 if __name__ == "__main__":
-    print(sys.argv)
-    main()
+    main(sys.argv[1])
