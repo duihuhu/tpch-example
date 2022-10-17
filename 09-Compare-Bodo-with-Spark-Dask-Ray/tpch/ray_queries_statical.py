@@ -12,7 +12,7 @@ import ray
 import modin.pandas as pd
 import time
 import warnings
-warnings.filterwarnings('ignore')
+warnings.filterwarnings('ignore', category=FutureWarning)
 #ray.init()
 ray.init(address = "auto")
 
