@@ -38,7 +38,7 @@ def run_time(func):
             # print("args",args[1])
             dirname = 'data'
             dict_param = get_func_params(func, *args, **kwargs)
-            print(dict_param.get('query_name'))
+            print(dict_param)
             t1 = time.time()
             func(*args, **kwargs)
             t2 = time.time() - t1
