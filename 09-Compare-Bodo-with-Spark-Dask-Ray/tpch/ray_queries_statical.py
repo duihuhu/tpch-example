@@ -28,9 +28,8 @@ def get_func_params(func, *args, **kwargs):
     if len(args) > 0:
         var_names = func.__code__.co_varnames
         print(var_names)
-        if len(args) == len(var_names):
-            for i in range(len(var_names)):
-                dict_param.update({var_names[i]: args[i]})
+        for i in range(len(args)):
+            dict_param.update({var_names[i]: args[i]})
     if len(kwargs) > 0:
         dict_param.update(kwargs.items)
     return dict_param
