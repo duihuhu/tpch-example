@@ -24,12 +24,12 @@ ray.init(address = "auto")
 def run_time(func):
     def wrapper(*args, **kv):
             # print("args",args[1])
-            filename = str(args[1]) + "_runtime"
+            filename = str(args[1]) + "_runtime" + ".txt"
             t1 = time.time()
             func(*args, **kv)
             t2 = time.time() - t1
             content = str(args[1]) + ':' + str(t2)
-            with open(filename, 'r') as fd:
+            with open(filename, 'a+') as fd:
                 fd.write(content+'\n')
             # print("current Function [%s] run time is %.2f" % (func.__name__ ,time.time() - t1))
     return wrapper
