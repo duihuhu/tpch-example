@@ -31,7 +31,7 @@ def run_time(func):
             t2 = time.time() - t1
             content = str(args[1]) + ':' + str(t2)
             if not os.path.exists(dirname +'/'+ cluster_type):
-                os.mkdir(dirname)
+                os.mkdir(dirname +'/'+ cluster_type)
             filename = dirname + '/' + cluster_type + '/' +str(args[1]) + "_runtime" + ".txt"
             with open(filename, 'a+') as fd:
                 fd.write(content+'\n')
