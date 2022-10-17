@@ -20,6 +20,7 @@ import os
 
 #ray.init()
 ray.init(address = "auto")
+cluster_type = sys.argv[2]
 
 def run_time(func):
     def wrapper(*args, **kv):
@@ -31,7 +32,7 @@ def run_time(func):
             content = str(args[1]) + ':' + str(t2)
             if not os.path.exists(dirname):
                 os.mkdir(dirname)
-            filename = dirname + '/' + str(args[1]) + "_runtime" + ".txt"
+            filename = dirname + '/' + cluster_type + '/' +str(args[1]) + "_runtime" + ".txt"
             with open(filename, 'a+') as fd:
                 fd.write(content+'\n')
             # print("current Function [%s] run time is %.2f" % (func.__name__ ,time.time() - t1))
