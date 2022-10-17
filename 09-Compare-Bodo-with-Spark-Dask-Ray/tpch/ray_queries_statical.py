@@ -14,8 +14,6 @@ from symbol import arglist
 from warnings import simplefilter
 
 # warnings.filterwarnings('ignore', category='FutureWarning', module='modin')
-simplefilter(action='ignore', category=FutureWarning)
-simplefilter(action='ignore', category=DeprecationWarning)
 
 import ray
 import modin.pandas as pd
@@ -877,4 +875,7 @@ def main(name):
     run_queries(path, name)
 
 if __name__ == "__main__":
+    simplefilter(action='ignore', category=FutureWarning)
+    simplefilter(action='ignore', category=DeprecationWarning)
+
     main(sys.argv[1])
