@@ -24,7 +24,7 @@ ray.init(address = "auto")
 def run_time(func):
     def wrapper(*args, **kv):
             t1 = time.time()
-            print("args",args)
+            print("args",kv['query_name'])
             func(*args, **kv)
             print("current Function [%s] run time is %.2f" % (func.__name__ ,time.time() - t1))
     return wrapper
@@ -46,7 +46,7 @@ def run_queries(data_folder, name):
     # Run the Queries:
     # q01
     if query_name=="q01":
-        q01(lineitem)
+        q01(lineitem, query_name)
     '''
     # q02
     q02(part, partsupp, supplier, nation, region)
@@ -156,7 +156,7 @@ def load_partsupp(data_folder):
     return df
 
 @run_time
-def q01(lineitem):
+def q01(lineitem, query_name):
     # t1 = time.time()
     date = pd.Timestamp("1998-09-02")
     print(list(lineitem.columns.values))
