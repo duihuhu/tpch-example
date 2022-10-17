@@ -8,7 +8,7 @@ The differences are in:
 
 """
 from ast import arg
-import warnings
+# import warnings
 # import logging
 from symbol import arglist
 
@@ -22,10 +22,7 @@ import time
 import sys
 import os
 os.environ["__MODIN_AUTOIMPORT_PANDAS__"] = "1"
-def warn(*args, **kwargs):
-    pass
-import warnings
-warnings.warn = warn
+
 #ray.init()
 ray.init(address = "auto")
 cluster_type = sys.argv[2]
