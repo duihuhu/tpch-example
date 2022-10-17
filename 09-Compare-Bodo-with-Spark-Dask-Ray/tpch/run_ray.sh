@@ -4,6 +4,6 @@ do
     for((j=1; j<=100; j++))
     do
         python3.9 -W ignore::DeprecationWarning ray_queries_statical.py $i 'single'
-        sleep 10
+        sleep 5
     done
 done 
