@@ -11,8 +11,10 @@ The differences are in:
 import ray
 import modin.pandas as pd
 import time
-import warnings
-warnings.filterwarnings('ignore', category=FutureWarning)
+# import warnings
+# warnings.filterwarnings('ignore', category=FutureWarning)
+from warnings import simplefilter
+simplefilter(action='ignore', category=FutureWarning)
 #ray.init()
 ray.init(address = "auto")
 
