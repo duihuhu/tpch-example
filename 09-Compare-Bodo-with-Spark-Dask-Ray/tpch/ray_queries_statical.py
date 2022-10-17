@@ -9,13 +9,12 @@ The differences are in:
 """
 from ast import arg
 # import warnings
-import logging
+# import logging
 from symbol import arglist
 from warnings import simplefilter
 
-logging.captureWarnings(True)
-simplefilter(action='ignore', category=FutureWarning)
-simplefilter(action='ignore', category=DeprecationWarning)
+# logging.captureWarnings(True)
+
 
 # warnings.filterwarnings('ignore', category='FutureWarning', module='modin')
 
@@ -25,7 +24,8 @@ import time
 import sys
 import os
 os.environ["__MODIN_AUTOIMPORT_PANDAS__"] = "1"
-
+simplefilter(action='ignore', category=FutureWarning)
+simplefilter(action='ignore', category=DeprecationWarning)
 #ray.init()
 ray.init(address = "auto")
 cluster_type = sys.argv[2]
