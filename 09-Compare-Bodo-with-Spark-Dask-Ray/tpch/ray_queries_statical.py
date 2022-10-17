@@ -23,10 +23,15 @@ ray.init(address = "auto")
 
 def run_time(func):
     def wrapper(*args, **kv):
+            # print("args",args[1])
+            filename = str(args[1]) + "_runtime"
             t1 = time.time()
-            print("args",args[1])
             func(*args, **kv)
-            print("current Function [%s] run time is %.2f" % (func.__name__ ,time.time() - t1))
+            t2 = time.time() - t1
+            content = str(args[1]) + ':' + str(t2)
+            with open(filename, 'r') as fd:
+                fd.write(content+'\n')
+            # print("current Function [%s] run time is %.2f" % (func.__name__ ,time.time() - t1))
     return wrapper
 
 def run_queries(data_folder, name):
