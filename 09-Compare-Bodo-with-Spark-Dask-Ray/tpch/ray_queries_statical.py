@@ -25,7 +25,7 @@ with warnings.catch_warnings():
     import time
     import sys
     import os
-os.environ["__MODIN_AUTOIMPORT_PANDAS__"] = 1
+os.environ["__MODIN_AUTOIMPORT_PANDAS__"] = "1"
 #ray.init()
 ray.init(address = "auto")
 cluster_type = sys.argv[2]
