@@ -8,10 +8,14 @@ The differences are in:
 
 """
 from ast import arg
-import warnings
+# import warnings
 
 from symbol import arglist
-warnings.filterwarnings('ignore', category='FutureWarning', module='modin')
+from warnings import simplefilter
+
+# warnings.filterwarnings('ignore', category='FutureWarning', module='modin')
+simplefilter(action='ignore', category=FutureWarning)
+
 import ray
 import modin.pandas as pd
 import time
