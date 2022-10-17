@@ -15,6 +15,7 @@ from warnings import simplefilter
 
 # warnings.filterwarnings('ignore', category='FutureWarning', module='modin')
 simplefilter(action='ignore', category=FutureWarning)
+simplefilter(action='ignore', category=DeprecationWarning)
 
 import ray
 import modin.pandas as pd
