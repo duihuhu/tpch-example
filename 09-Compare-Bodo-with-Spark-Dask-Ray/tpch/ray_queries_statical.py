@@ -11,6 +11,8 @@ The differences are in:
 import ray
 import modin.pandas as pd
 import time
+import warnings
+warnings.filterwarnings('ignore')
 #ray.init()
 ray.init(address = "auto")
 
