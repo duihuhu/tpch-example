@@ -7,6 +7,7 @@ The differences are in:
 2. Query 8 : total.groupby("O_YEAR", as_index = False).apply(udf) --> total.groupby("O_YEAR").apply(udf).reset_index()
 
 """
+from ast import arg
 import warnings
 warnings.filterwarnings('ignore')
 import ray
@@ -822,4 +823,5 @@ def main():
     run_queries(path)
 
 if __name__ == "__main__":
+    print(sys.argv)
     main()
