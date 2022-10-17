@@ -11,7 +11,7 @@ from ast import arg
 import warnings
 
 from symbol import arglist
-warnings.filterwarnings('ignore')
+warnings.filterwarnings('ignore', module='modin')
 import ray
 import modin.pandas as pd
 import time
