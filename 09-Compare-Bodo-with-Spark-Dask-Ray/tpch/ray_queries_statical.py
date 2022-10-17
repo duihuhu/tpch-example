@@ -16,16 +16,16 @@ from symbol import arglist
 
 
 # warnings.filterwarnings('ignore', category='FutureWarning', module='modin')
-with warnings.catch_warnings():
-    warnings.filterwarnings("ignore",category=DeprecationWarning)
-    warnings.filterwarnings(action='ignore', category=FutureWarning)
-
-    import ray
-    import modin.pandas as pd
-    import time
-    import sys
-    import os
+import ray
+import modin.pandas as pd
+import time
+import sys
+import os
 os.environ["__MODIN_AUTOIMPORT_PANDAS__"] = "1"
+def warn(*args, **kwargs):
+    pass
+import warnings
+warnings.warn = warn
 #ray.init()
 ray.init(address = "auto")
 cluster_type = sys.argv[2]
