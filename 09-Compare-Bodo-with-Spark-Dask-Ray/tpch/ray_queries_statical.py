@@ -7,14 +7,14 @@ The differences are in:
 2. Query 8 : total.groupby("O_YEAR", as_index = False).apply(udf) --> total.groupby("O_YEAR").apply(udf).reset_index()
 
 """
-
+from warnings import simplefilter
+simplefilter(action='ignore', category=FutureWarning)
 import ray
 import modin.pandas as pd
 import time
 # import warnings
 # warnings.filterwarnings('ignore', category=FutureWarning)
-from warnings import simplefilter
-simplefilter(action='ignore', category=FutureWarning)
+
 #ray.init()
 ray.init(address = "auto")
 
