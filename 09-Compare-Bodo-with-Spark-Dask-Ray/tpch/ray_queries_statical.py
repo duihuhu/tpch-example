@@ -306,7 +306,6 @@ def q04(lineitem, orders, query_name):
     flineitem = lineitem[lsel]
     forders = orders[osel]
     jn = forders[forders["O_ORDERKEY"].isin(flineitem["L_ORDERKEY"])]
-    print("jn", jn)
     total = (
         jn.groupby("O_ORDERPRIORITY", as_index=False)["O_ORDERKEY"]
         .count()
