@@ -24,7 +24,7 @@ ray.init(address = "auto")
 def run_time(func):
     def wrapper(*args, **kv):
             t1 = time.time()
-            print("args",kv['query_name'])
+            print("args",kv)
             func(*args, **kv)
             print("current Function [%s] run time is %.2f" % (func.__name__ ,time.time() - t1))
     return wrapper
