@@ -18,7 +18,7 @@ def run_time(func):
     def wrapper(*args, **kv):
             t1 = time.time()
             func(*args, **kv)
-            print(current Function [%s] run time is %.2f % (func.__name__ ,time.time() - t1))
+            print("current Function [%s] run time is %.2f" % (func.__name__ ,time.time() - t1))
     return wrapper
 
 def run_queries(data_folder):
