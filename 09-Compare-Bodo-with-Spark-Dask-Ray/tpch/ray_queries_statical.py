@@ -24,6 +24,7 @@ cluster_type = sys.argv[2]
 
 def get_func_params(func, *args, **kwargs):
     dict_param = {}
+    print(len(args), len(kwargs))
     if len(args) > 0:
         var_names = func.__code__.co_varnames
         if len(args) == len(var_names):
