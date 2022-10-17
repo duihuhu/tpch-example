@@ -24,10 +24,10 @@ cluster_type = sys.argv[2]
 
 def get_func_params(func, *args, **kwargs):
     dict_param = {}
-    print(len(args), len(kwargs))
+    # print(len(args), len(kwargs))
     if len(args) > 0:
         var_names = func.__code__.co_varnames
-        print(var_names)
+        # print(var_names)
         for i in range(len(args)):
             dict_param.update({var_names[i]: args[i]})
     if len(kwargs) > 0:
@@ -39,7 +39,7 @@ def run_time(func):
             # print("args",args[1])
             dirname = 'data'
             dict_param = get_func_params(func, *args, **kwargs)
-            print(dict_param)
+            # print(dict_param)
             t1 = time.time()
             func(*args, **kwargs)
             t2 = time.time() - t1
