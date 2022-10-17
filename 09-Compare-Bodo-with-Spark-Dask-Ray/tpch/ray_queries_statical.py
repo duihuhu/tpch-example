@@ -22,17 +22,30 @@ import os
 ray.init(address = "auto")
 cluster_type = sys.argv[2]
 
+def get_func_params(func, *args, **kwargs):
+    dict_param = {}
+    if len(args) > 0:
+        var_names = func.__code__.co_varnames
+        if len(args) == len(var_names):
+            for i in range(len(var_names)):
+                dict_param.update({var_names[i]: args[i]})
+    if len(kwargs) > 0:
+        dict_param.update(kwargs.items)
+    return dict_param
+
 def run_time(func):
-    def wrapper(*args, **kv):
+    def wrapper(*args, **kwargs):
             # print("args",args[1])
             dirname = 'data'
+            dict_param = get_func_params(func, *args, **kwargs)
+            print(dict_param.get('query_name'))
             t1 = time.time()
-            func(*args, **kv)
+            func(*args, **kwargs)
             t2 = time.time() - t1
-            content = str(args[1]) + ':' + str(t2)
+            content = str(dict_param.get('query_name')) + ':' + str(t2)
             if not os.path.exists(dirname +'/'+ cluster_type):
                 os.makedirs(dirname +'/'+ cluster_type)
-            filename = dirname + '/' + cluster_type + '/' +str(args[1]) + "_runtime" + ".txt"
+            filename = dirname + '/' + cluster_type + '/' +str(dict_param.get('query_name')) + "_runtime" + ".txt"
             with open(filename, 'a+') as fd:
                 fd.write(content+'\n')
             # print("current Function [%s] run time is %.2f" % (func.__name__ ,time.time() - t1))
