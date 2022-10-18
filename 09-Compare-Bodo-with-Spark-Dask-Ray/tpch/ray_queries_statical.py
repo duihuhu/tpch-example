@@ -58,7 +58,7 @@ def run_time(func):
     return wrapper
 
 def run_queries(data_folder, name):
-    query_name = 'q0' + str(name)
+    query_name = 'q' + str(name)
     # Load the data
     t1 = time.time()
     lineitem = load_lineitem(data_folder)
@@ -73,31 +73,31 @@ def run_queries(data_folder, name):
     t1 = time.time()
     # Run the Queries:
     # q01
-    if query_name=="q01":
+    if query_name=="q1":
         q01(lineitem, query_name)
-    elif query_name=="q02":
+    elif query_name=="q2":
     # q02
         q02(part, partsupp, supplier, nation, region, query_name)
     # q03
-    elif query_name=="q03":
+    elif query_name=="q3":
         q03(lineitem, orders, customer, query_name)
     # q04
-    elif query_name=="q04":
+    elif query_name=="q4":
         q04(lineitem, orders, query_name)
     # q05
-    elif query_name=="q05":
+    elif query_name=="q5":
         q05(lineitem, orders, customer, nation, region, supplier, query_name)
     # q06
-    elif query_name=="q06":
+    elif query_name=="q6":
         q06(lineitem, query_name)
     # q07
-    elif query_name=="q07":
+    elif query_name=="q7":
         q07(lineitem, supplier, orders, customer, nation, query_name)
     # q08
-    elif query_name=="q08":
+    elif query_name=="q8":
         q08(part, lineitem, supplier, orders, customer, nation, region, query_name)
     # q09
-    elif query_name=="q09":
+    elif query_name=="q9":
         q09(lineitem, orders, part, nation, partsupp, supplier, query_name)
     # q10
     elif query_name=="q10":
