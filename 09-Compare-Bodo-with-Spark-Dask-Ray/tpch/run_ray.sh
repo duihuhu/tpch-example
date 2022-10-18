@@ -1,5 +1,5 @@
 #!/bin/bash
-for((i=1; i<=22; i++))
+for((i=10; i<=22; i++))
 do
     for((j=1; j<=100; j++))
     do
