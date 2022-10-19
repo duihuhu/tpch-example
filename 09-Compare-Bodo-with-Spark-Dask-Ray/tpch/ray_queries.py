@@ -144,7 +144,8 @@ def load_partsupp(data_folder):
 def q01(lineitem):
     t1 = time.time()
     date = pd.Timestamp("1998-09-02")
-    print(list(lineitem.columns.values))
+    # print(list(lineitem.columns.values))
+    t2 = time.time()
     lineitem_filtered = lineitem.loc[:, ["L_ORDERKEY", "L_QUANTITY", "L_EXTENDEDPRICE", "L_DISCOUNT", "L_TAX", "L_RETURNFLAG", "L_LINESTATUS",  "L_SHIPDATE"]]
     sel = lineitem_filtered.L_SHIPDATE <= date
     lineitem_filtered = lineitem_filtered[sel]
@@ -155,6 +156,7 @@ def q01(lineitem):
         lineitem_filtered.L_EXTENDEDPRICE * (1 - lineitem_filtered.L_DISCOUNT) * (1 + lineitem_filtered.L_TAX)
     )
     #ray needs double square bracket
+    t3 = time.time()
     gb = lineitem_filtered.groupby(["L_RETURNFLAG", "L_LINESTATUS"], as_index=False)[[
         "L_ORDERKEY",
         "L_QUANTITY",
@@ -165,6 +167,7 @@ def q01(lineitem):
         "CHARGE",
         "DISC_PRICE",
     ]]
+    t4 = time.time()
     total = gb.agg(
         {
             "L_QUANTITY": "sum",
@@ -178,8 +181,9 @@ def q01(lineitem):
         }
     )
     total = total.sort_values(["L_RETURNFLAG", "L_LINESTATUS"])
-    print(total)
+    # print(total)
     print("Q01 Execution time (s): ", time.time() - t1)
+    print("every stage", t2-t1, t3-t2, t4-t3)
 
 
 
