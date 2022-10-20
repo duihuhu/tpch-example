@@ -323,13 +323,14 @@ def q06(lineitem):
         & (lineitem_filtered.L_DISCOUNT <= 0.1)
         & (lineitem_filtered.L_QUANTITY < 24)
     )
-    flineitem = lineitem_filtered[sel]
     t3 = time.time()
-    total = (flineitem.L_EXTENDEDPRICE * flineitem.L_DISCOUNT).sum()
+    flineitem = lineitem_filtered[sel]
     t4 = time.time()
+    total = (flineitem.L_EXTENDEDPRICE * flineitem.L_DISCOUNT).sum()
+    t5 = time.time()
     # print(total)
     print("Q06 Execution time (s): ", time.time() - t1)
-    print("%.3f" % (t2-t1),"%.3f" % (t3-t2),"%.3f" % (t4-t3),)
+    print("%.3f" % (t2-t1),"%.3f" % (t3-t2),"%.3f" % (t4-t3),"%.3f" % (t5-t4),)
 
 
 def q07(lineitem, supplier, orders, customer, nation):
