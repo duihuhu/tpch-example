@@ -33,18 +33,20 @@ def run_queries(data_folder):
     # q01
     '''
     q01(lineitem)
-    '''
+    
     # q2
     q02(part, partsupp, supplier, nation, region)
     # q03
-    '''
+    
     q03(lineitem, orders, customer)
     # q04
     q04(lineitem, orders)
     # q05
     q05(lineitem, orders, customer, nation, region, supplier)
+    '''
     # q06
     q06(lineitem)
+    '''
     # q07
     q07(lineitem, supplier, orders, customer, nation)
     # q08
