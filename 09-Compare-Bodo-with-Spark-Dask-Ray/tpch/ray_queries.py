@@ -31,9 +31,9 @@ def run_queries(data_folder):
     t1 = time.time()
     # Run the Queries:
     # q01
-    '''
+
     q01(lineitem)
-    
+    '''
     # q2
     q02(part, partsupp, supplier, nation, region)
     # q03
@@ -43,9 +43,10 @@ def run_queries(data_folder):
     q04(lineitem, orders)
     # q05
     q05(lineitem, orders, customer, nation, region, supplier)
-    '''
+
     # q06
     q06(lineitem)
+    '''
     '''
     # q07
     q07(lineitem, supplier, orders, customer, nation)
@@ -152,15 +153,20 @@ def q01(lineitem):
     lineitem_filtered = lineitem.loc[:, ["L_ORDERKEY", "L_QUANTITY", "L_EXTENDEDPRICE", "L_DISCOUNT", "L_TAX", "L_RETURNFLAG", "L_LINESTATUS",  "L_SHIPDATE"]]
     t2 = time.time()
     sel = lineitem_filtered.L_SHIPDATE <= date
+    t3 = time.time()
     lineitem_filtered = lineitem_filtered[sel]
+    t4 = time.time()
     lineitem_filtered["AVG_QTY"] = lineitem_filtered.L_QUANTITY
+    t5 = time.time()
     lineitem_filtered["AVG_PRICE"] = lineitem_filtered.L_EXTENDEDPRICE
+    t6 = time.time()
     lineitem_filtered["DISC_PRICE"] = lineitem_filtered.L_EXTENDEDPRICE * (1 - lineitem_filtered.L_DISCOUNT)
+    t7 = time.time()
     lineitem_filtered["CHARGE"] = (
         lineitem_filtered.L_EXTENDEDPRICE * (1 - lineitem_filtered.L_DISCOUNT) * (1 + lineitem_filtered.L_TAX)
     )
     #ray needs double square bracket
-    t3 = time.time()
+    t8 = time.time()
     gb = lineitem_filtered.groupby(["L_RETURNFLAG", "L_LINESTATUS"], as_index=False)[[
         "L_ORDERKEY",
         "L_QUANTITY",
@@ -171,7 +177,7 @@ def q01(lineitem):
         "CHARGE",
         "DISC_PRICE",
     ]]
-    t4 = time.time()
+    t9 = time.time()
     total = gb.agg(
         {
             "L_QUANTITY": "sum",
@@ -184,11 +190,11 @@ def q01(lineitem):
             "L_ORDERKEY": "count",
         }
     )
-    t5 = time.time()
+    t10 = time.time()
     total = total.sort_values(["L_RETURNFLAG", "L_LINESTATUS"])
     # print(total)
     print("Q01 Execution time (s): ", time.time() - t1)
-    print("every stage: ", "loc: ", t2-t1, ", get data: ", t3-t2, ", group_by: ", t4-t3, ", agg: ", t5-t4, ", sort_value: ", time.time()-t5)
+    print("%.3f" % (t2-t1),"%.3f" % (t3-t2),"%.3f" % (t4-t3),"%.3f" % (t5-t4),"%.3f" % (t6-t5),"%.3f" % (t7-t6),"%.3f" % (t8-t7),"%.3f" % (t9-t8),"%.3f" % (t10-t9),)
 
 
 
@@ -314,7 +320,7 @@ def q06(lineitem):
     t1 = time.time()
     date1 = pd.Timestamp("1996-01-01")
     date2 = pd.Timestamp("1997-01-01")
-    lineitem_filtered = lineitem.loc[:, ["L_QUANTITY", "L_EXTENDEDPRICE", "L_DISCOUNT", "L_SHIPDATE"]]
+    lineitem_filtered = lineitem.loc[:, ["L_QUANTITY", "L_EXTENDEDPRICE", "L_DISCOUNT", "L_SHIPDATE"]] #loc是指筛选某几列
     t2 = time.time()
     sel = (
         (lineitem_filtered.L_SHIPDATE >= date1)
