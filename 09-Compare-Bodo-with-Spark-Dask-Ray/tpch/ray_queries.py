@@ -142,11 +142,11 @@ def load_partsupp(data_folder):
 
 
 def q01(lineitem):
-    t1 = time.time()
     date = pd.Timestamp("1998-09-02")
     # print(list(lineitem.columns.values))
-    t2 = time.time()
+    t1 = time.time()
     lineitem_filtered = lineitem.loc[:, ["L_ORDERKEY", "L_QUANTITY", "L_EXTENDEDPRICE", "L_DISCOUNT", "L_TAX", "L_RETURNFLAG", "L_LINESTATUS",  "L_SHIPDATE"]]
+    t2 = time.time()
     sel = lineitem_filtered.L_SHIPDATE <= date
     lineitem_filtered = lineitem_filtered[sel]
     lineitem_filtered["AVG_QTY"] = lineitem_filtered.L_QUANTITY
@@ -180,10 +180,11 @@ def q01(lineitem):
             "L_ORDERKEY": "count",
         }
     )
+    t5 = time.time()
     total = total.sort_values(["L_RETURNFLAG", "L_LINESTATUS"])
     # print(total)
     print("Q01 Execution time (s): ", time.time() - t1)
-    print("every stage", t2-t1, t3-t2, t4-t3)
+    print("every stage: ", "loc: ", t2-t1, "get data: "t3-t2, "group_by: ", t4-t3, "agg: ", t5-t4, "sort_value: ", time.time()-t5)
 
 
 
