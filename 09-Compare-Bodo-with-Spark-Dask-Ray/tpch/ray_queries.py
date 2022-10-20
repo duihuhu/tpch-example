@@ -236,7 +236,7 @@ def q02(part, partsupp, supplier, nation, region):
     t22 = time.time()
     # print(total)
     print("Q02 Execution time (s): ", t22 - t1)
-    print(t2-t1,t3-t2,t4-t3,t5-t4,t6-t5,t7-t6,t8-t7,t9-t8,t10-t9,t11-t10,t12-t11,t13-t12,t14-t13,t15-t14,t16-t15,t17-t16,t18-t17,t19-t18,t20-t19,t21-t20,t22-t21,)
+    print("%.3f %" (t2-t1),"%.3f %" (t3-t2),"%.3f %" (t4-t3),"%.3f %" (t5-t4),"%.3f %" (t6-t5),"%.3f %" (t7-t6),"%.3f %" (t8-t7),"%.3f %" (t9-t8),"%.3f %" (t10-t9),"%.3f %" (t11-t10),"%.3f %" (t12-t11),"%.3f %" (t13-t12),"%.3f %" (t14-t13),"%.3f %" (t15-t14),"%.3f %" (t16-t15),"%.3f %" (t17-t16),"%.3f %" (t18-t17),"%.3f %" (t19-t18),"%.3f %" (t20-t19),"%.3f %" (t21-t20),"%.3f %" (t22-t21),)
 
 
 def q03(lineitem, orders, customer):

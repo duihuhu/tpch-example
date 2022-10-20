@@ -121,4 +121,4 @@ fabric.properties
 credentials.json
 */credentials.json
 */.env
-*/.txt
+*.txt
