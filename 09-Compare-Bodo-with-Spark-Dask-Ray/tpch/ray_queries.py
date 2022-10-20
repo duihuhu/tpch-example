@@ -313,6 +313,7 @@ def q06(lineitem):
     date1 = pd.Timestamp("1996-01-01")
     date2 = pd.Timestamp("1997-01-01")
     lineitem_filtered = lineitem.loc[:, ["L_QUANTITY", "L_EXTENDEDPRICE", "L_DISCOUNT", "L_SHIPDATE"]]
+    t2 = time.time()
     sel = (
         (lineitem_filtered.L_SHIPDATE >= date1)
         & (lineitem_filtered.L_SHIPDATE < date2)
@@ -321,10 +322,12 @@ def q06(lineitem):
         & (lineitem_filtered.L_QUANTITY < 24)
     )
     flineitem = lineitem_filtered[sel]
+    t3 = time.time()
     total = (flineitem.L_EXTENDEDPRICE * flineitem.L_DISCOUNT).sum()
-    print(total)
+    t4 = time.time()
+    # print(total)
     print("Q06 Execution time (s): ", time.time() - t1)
-
+    print("%.3f" % (t2-t1),"%.3f" % (t3-t2),"%.3f" % (t4-t3),)
 
 
 def q07(lineitem, supplier, orders, customer, nation):
