@@ -31,11 +31,13 @@ def run_queries(data_folder):
     t1 = time.time()
     # Run the Queries:
     # q01
+    '''
     q01(lineitem)
     '''
     # q2
     q02(part, partsupp, supplier, nation, region)
     # q03
+    '''
     q03(lineitem, orders, customer)
     # q04
     q04(lineitem, orders)
@@ -191,29 +193,50 @@ def q01(lineitem):
 def q02(part, partsupp, supplier, nation, region):
     t1 = time.time()
     nation_filtered = nation.loc[:, ["N_NATIONKEY", "N_NAME", "N_REGIONKEY"]]
+    t2 = time.time()
     region_filtered = region[(region["R_NAME"] == "EUROPE")]
+    t3 = time.time()
     region_filtered = region_filtered.loc[:, ["R_REGIONKEY"]]
+    t4 = time.time()
     r_n_merged = nation_filtered.merge(region_filtered, left_on='N_REGIONKEY', right_on='R_REGIONKEY', how='inner')
+    t5 = time.time()
     r_n_merged = r_n_merged.loc[:, ["N_NATIONKEY", "N_NAME"]]
+    t6 = time.time()
     supplier_filtered = supplier.loc[:, ["S_SUPPKEY", "S_NAME", "S_ADDRESS", "S_NATIONKEY", "S_PHONE", "S_ACCTBAL", "S_COMMENT"]]
+    t7 = time.time()
     s_r_n_merged = r_n_merged.merge(supplier_filtered, left_on="N_NATIONKEY", right_on="S_NATIONKEY", how="inner")
+    t8 = time.time()
     s_r_n_merged = s_r_n_merged.loc[:, ["N_NAME", "S_SUPPKEY", "S_NAME", "S_ADDRESS", "S_PHONE", "S_ACCTBAL", "S_COMMENT"]]
+    t9 = time.time()
     partsupp_filtered = partsupp.loc[:, ["PS_PARTKEY", "PS_SUPPKEY", "PS_SUPPLYCOST"]]
+    t10 = time.time()
     ps_s_r_n_merged = s_r_n_merged.merge(partsupp_filtered, left_on="S_SUPPKEY", right_on="PS_SUPPKEY", how="inner")
+    t11 = time.time()
     ps_s_r_n_merged = ps_s_r_n_merged.loc[:, ["N_NAME", "S_NAME", "S_ADDRESS", "S_PHONE", "S_ACCTBAL", "S_COMMENT", "PS_PARTKEY", "PS_SUPPLYCOST"]]
+    t12 = time.time()
     part_filtered = part.loc[:, ["P_PARTKEY", "P_MFGR", "P_SIZE", "P_TYPE"]]
+    t13 = time.time()
     part_filtered = part_filtered[(part_filtered["P_SIZE"] == 15) & (part_filtered["P_TYPE"].str.endswith("BRASS"))]
+    t14 = time.time()
     part_filtered = part_filtered.loc[:, ["P_PARTKEY", "P_MFGR"]]
+    t15 = time.time()
     merged_df = part_filtered.merge(ps_s_r_n_merged, left_on='P_PARTKEY', right_on='PS_PARTKEY', how='inner')
+    t16 = time.time()
     merged_df = merged_df.loc[:, ["N_NAME", "S_NAME", "S_ADDRESS", "S_PHONE", "S_ACCTBAL", "S_COMMENT", "PS_SUPPLYCOST", "P_PARTKEY", "P_MFGR"]]
+    t17 = time.time()
     min_values = merged_df.groupby("P_PARTKEY", as_index=False)["PS_SUPPLYCOST"].min()
+    t18 = time.time()
     min_values.columns=["P_PARTKEY_CPY", "MIN_SUPPLYCOST"]
+    t19 = time.time()
     merged_df = merged_df.merge(min_values, left_on=["P_PARTKEY", "PS_SUPPLYCOST"], right_on=["P_PARTKEY_CPY", "MIN_SUPPLYCOST"], how="inner")
+    t20 = time.time()
     total = merged_df.loc[:, ["S_ACCTBAL", "S_NAME", "N_NAME", "P_PARTKEY", "P_MFGR", "S_ADDRESS", "S_PHONE", "S_COMMENT"]]
+    t21 = time.time()
     total = total.sort_values(by=["S_ACCTBAL","N_NAME","S_NAME","P_PARTKEY",], ascending=[False,True,True,True,])
-    print(total)
-    print("Q02 Execution time (s): ", time.time() - t1)
-
+    t22 = time.time()
+    # print(total)
+    print("Q02 Execution time (s): ", t22 - t1)
+    print(t2-t1,t3-t2,t4-t3,t5-t4,t6-t5,t7-t6,t8-t7,t9-t8,t10-t9,t11-t10,t12-t11,t13-t12,t14-t13,t15-t14,t16-t15,t17-t16,t18-t17,t19-t18,t20-t19,t21-t20,t22-t21,)
 
 
 def q03(lineitem, orders, customer):

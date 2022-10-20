@@ -13,7 +13,7 @@
 *.pyd
 *~
 data/*
-
+/
 # cache
 examples/__pycache__
 examples/tpch/__pycache__
