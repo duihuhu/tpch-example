@@ -184,7 +184,7 @@ def q01(lineitem):
     total = total.sort_values(["L_RETURNFLAG", "L_LINESTATUS"])
     # print(total)
     print("Q01 Execution time (s): ", time.time() - t1)
-    print("every stage: ", "loc: ", t2-t1, "get data: ", t3-t2, "group_by: ", t4-t3, "agg: ", t5-t4, "sort_value: ", time.time()-t5)
+    print("every stage: ", "loc: ", t2-t1, ", get data: ", t3-t2, ", group_by: ", t4-t3, ", agg: ", t5-t4, ", sort_value: ", time.time()-t5)
 
 
 
