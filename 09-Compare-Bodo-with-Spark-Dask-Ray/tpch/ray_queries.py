@@ -193,8 +193,9 @@ def q01(lineitem):
     t10 = time.time()
     total = total.sort_values(["L_RETURNFLAG", "L_LINESTATUS"])
     # print(total)
+    t11 = time.time()
     print("Q01 Execution time (s): ", time.time() - t1)
-    print("%.3f" % (t2-t1),"%.3f" % (t3-t2),"%.3f" % (t4-t3),"%.3f" % (t5-t4),"%.3f" % (t6-t5),"%.3f" % (t7-t6),"%.3f" % (t8-t7),"%.3f" % (t9-t8),"%.3f" % (t10-t9),)
+    print("%.3f" % (t2-t1),"%.3f" % (t3-t2),"%.3f" % (t4-t3),"%.3f" % (t5-t4),"%.3f" % (t6-t5),"%.3f" % (t7-t6),"%.3f" % (t8-t7),"%.3f" % (t9-t8),"%.3f" % (t10-t9), "%.3f" % (t11-t10))
 
 
 
