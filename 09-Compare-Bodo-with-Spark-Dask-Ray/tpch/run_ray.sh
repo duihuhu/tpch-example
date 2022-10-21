@@ -9,9 +9,10 @@ do
         python3 -W ignore::DeprecationWarning ray_queries_statical.py $i 'single'
         sleep 5
         k=$(($k+1))
-        if [ $k -gt 2 ]
+        if [ $k -gt 3 ]
         then
             ray stop
+            sleep 2
             ray start --head --port=6379 --num-cpus 40 
             sleep 2
             k=0
