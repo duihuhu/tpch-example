@@ -46,7 +46,7 @@ sleep 3
 k=1
 for((i=1; i<=22; i++))
 do
-    for((j=1; j<=15; j++))
+    for((j=1; j<=40; j++))
     do
         python3 -W ignore::DeprecationWarning ray_queries_statical.py $i 'cluster'
         sleep 3
