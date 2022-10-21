@@ -13,7 +13,7 @@ do
             ray stop
             ray start --head --port=6379 --num-cpus 40 
             sleep 2
-            $k=0
+            k=0
         fi
     done
 done 
