@@ -40,25 +40,27 @@ EOF
 
 ulimit -n 65535
 ray start --head --port=6379 --num-cpus 40 
+sleep 3
 login_start
+sleep 3
 k=1
 for((i=1; i<=22; i++))
 do
     for((j=1; j<=15; j++))
     do
         python3 -W ignore::DeprecationWarning ray_queries_statical.py $i 'cluster'
-        sleep 5
+        sleep 3
         k=$(($k+1))
         if [ $k -gt 3 ]
         then
             login_stop
-            sleep 1
+            sleep 3
             ray stop
-            sleep 1
+            sleep 3
             ray start --head --port=6379 --num-cpus 40 
-            sleep 1
+            sleep 3
             login_start
-            sleep 1
+            sleep 3
             k=0
         fi
     done
