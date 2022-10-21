@@ -1,5 +1,6 @@
 #!/bin/bash
 ulimit -n 65535
+ray start --head --port=6379 --num-cpus 40 
 k=1
 for((i=1; i<=22; i++))
 do
