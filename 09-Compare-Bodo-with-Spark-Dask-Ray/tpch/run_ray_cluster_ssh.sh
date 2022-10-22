@@ -28,8 +28,9 @@ EOF
 ulimit -n 65535
 ray start --head --port=6379 --num-cpus 40 
 sleep 2
-login_start
+login_start()
 sleep 2
+echo "aa"
 # k=1
 # for((i=1; i<=22; i++))
 # do
