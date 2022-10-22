@@ -29,15 +29,13 @@ ulimit -n 65535
 ray start --head --port=6379 --num-cpus 40 
 sleep 2
 ssh $user@$ip > /dev/null 2>&1 << EOF
-    echo "aa"
     ulimit -n 65535
     cd /usr/local/python3.8.10/bin
     ./ray start  --address='10.118.0.221:6379' --num-cpus 40
-    sleep 3
+    sleep 1000
     exit
 EOF
-sleep 2
-echo "aa"
+echo "aaa"
 # k=1
 # for((i=1; i<=22; i++))
 # do
