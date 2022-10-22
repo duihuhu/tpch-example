@@ -9,7 +9,7 @@ function login_start(){
     ulimit -n 65535
     cd /usr/local/python3.8.10/bin
     ./ray start  --address='10.118.0.221:6379' --num-cpus 40
-    sleep 3
+    sleep 5
     exit
 EOF
 }
@@ -28,14 +28,8 @@ EOF
 ulimit -n 65535
 ray start --head --port=6379 --num-cpus 40 
 sleep 2
-ssh $user@$ip > /dev/null 2>&1 << EOF
-    ulimit -n 65535
-    cd /usr/local/python3.8.10/bin
-    ./ray start  --address='10.118.0.221:6379' --num-cpus 40
-    sleep 1000
-    exit
-EOF
-echo "aaa"
+login_start
+sleep 2
 # k=1
 # for((i=1; i<=22; i++))
 # do
