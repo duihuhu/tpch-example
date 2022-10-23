@@ -31,9 +31,8 @@ def run_queries(data_folder):
     t1 = time.time()
     # Run the Queries:
     # q01
-
-    q01(lineitem)
     '''
+    q01(lineitem)
     # q2
     q02(part, partsupp, supplier, nation, region)
     # q03
@@ -46,8 +45,6 @@ def run_queries(data_folder):
 
     # q06
     q06(lineitem)
-    '''
-    '''
     # q07
     q07(lineitem, supplier, orders, customer, nation)
     # q08
@@ -62,8 +59,10 @@ def run_queries(data_folder):
     q12(lineitem, orders)
     # q13
     q13(customer, orders)
+    '''
     # q14
     q14(lineitem, part)
+    '''
     # q15
     q15(lineitem, supplier)
     # q16
@@ -560,14 +559,22 @@ def q14(lineitem, part):
     endDate = pd.Timestamp("1994-04-01")
     p_type_like = "PROMO"
     part_filtered = part.loc[:, ["P_PARTKEY", "P_TYPE"]]
+    t2 = time.time()
     lineitem_filtered = lineitem.loc[:, ["L_EXTENDEDPRICE", "L_DISCOUNT", "L_SHIPDATE", "L_PARTKEY"]]
+    t3 = time.time()
     sel = (lineitem_filtered.L_SHIPDATE >= startDate) & (lineitem_filtered.L_SHIPDATE < endDate)
+    t4 = time.time()
     flineitem = lineitem_filtered[sel]
+    t5 = time.time()
     jn = flineitem.merge(part_filtered, left_on="L_PARTKEY", right_on="P_PARTKEY")
+    t6 = time.time()
     jn["TMP"] = jn.L_EXTENDEDPRICE * (1.0 - jn.L_DISCOUNT)
     total = jn[jn.P_TYPE.str.startswith(p_type_like)].TMP.sum() * 100 / jn.TMP.sum()
+    t7 = time.time()
     print(total)
+    t8 = time.time()
     print("Q14 Execution time (s): ", time.time() - t1)
+    print("%.3f" % (t2-t1),"%.3f" % (t3-t2),"%.3f" % (t4-t3),"%.3f" % (t5-t4),"%.3f" % (t6-t5),"%.3f" % (t7-t6),"%.3f" % (t8-t7),)
 
 
 
