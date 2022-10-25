@@ -35,6 +35,7 @@ do
     ulimit -n 65535
     ray start --head --port=6379 --num-cpus 40 
     login_start
+    sleep 5
     for((j=1; j<=40; j++))
     do
         python3 -W ignore::DeprecationWarning ray_queries_statical.py $i 'cluster'
