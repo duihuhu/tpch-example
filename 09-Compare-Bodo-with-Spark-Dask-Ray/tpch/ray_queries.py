@@ -27,12 +27,11 @@ def run_queries(data_folder):
     supplier = load_supplier(data_folder)
     part = load_part(data_folder)
     partsupp = load_partsupp(data_folder)
-    print("Reading time (s): ", time.time() - t1)
-    t1 = time.time()
+    print("hucc Reading time (s): ", time.time())
     # Run the Queries:
     # q01
-    '''
     q01(lineitem)
+    '''
     # q2
     q02(part, partsupp, supplier, nation, region)
     # q03
@@ -59,10 +58,8 @@ def run_queries(data_folder):
     q12(lineitem, orders)
     # q13
     q13(customer, orders)
-    '''
     # q14
     q14(lineitem, part)
-    '''
     # q15
     q15(lineitem, supplier)
     # q16
@@ -79,8 +76,8 @@ def run_queries(data_folder):
     q21(lineitem, orders, supplier, nation)
     # q22
     q22(customer, orders)
-    '''
     print("Total Query time (s): ", time.time() - t1)
+    '''
 
 def load_lineitem(data_folder):
     data_path = data_folder + "/lineitem.pq"
