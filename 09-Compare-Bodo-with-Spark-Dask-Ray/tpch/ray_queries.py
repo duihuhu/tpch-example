@@ -169,6 +169,7 @@ def q01(lineitem):
     )
     #ray needs double square bracket
     t8 = time.time()
+    print("t8: ", t8)
     gb = lineitem_filtered.groupby(["L_RETURNFLAG", "L_LINESTATUS"], as_index=False)[[
         "L_ORDERKEY",
         "L_QUANTITY",
@@ -179,7 +180,7 @@ def q01(lineitem):
         "CHARGE",
         "DISC_PRICE",
     ]]
-    print("t8: ", t8)
+    print("t9: ", t9)
     t9 = time.time()
     total = gb.agg(
         {
@@ -193,8 +194,8 @@ def q01(lineitem):
             "L_ORDERKEY": "count",
         }
     )
-    print("t9: ", t9)
     t10 = time.time()
+    print("t10: ", t10)
     total = total.sort_values(["L_RETURNFLAG", "L_LINESTATUS"])
     print(total)
     t11 = time.time()
