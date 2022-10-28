@@ -148,16 +148,22 @@ def q01(lineitem):
     t1 = time.time()
     lineitem_filtered = lineitem.loc[:, ["L_ORDERKEY", "L_QUANTITY", "L_EXTENDEDPRICE", "L_DISCOUNT", "L_TAX", "L_RETURNFLAG", "L_LINESTATUS",  "L_SHIPDATE"]]
     t2 = time.time()
+    print("t2: ", t2)
     sel = lineitem_filtered.L_SHIPDATE <= date
     t3 = time.time()
+    print("t3: ", t3)
     lineitem_filtered = lineitem_filtered[sel]
     t4 = time.time()
+    print("t4: ", t4)
     lineitem_filtered["AVG_QTY"] = lineitem_filtered.L_QUANTITY
     t5 = time.time()
+    print("t5: ", t5)
     lineitem_filtered["AVG_PRICE"] = lineitem_filtered.L_EXTENDEDPRICE
     t6 = time.time()
+    print("t6: ", t6)
     lineitem_filtered["DISC_PRICE"] = lineitem_filtered.L_EXTENDEDPRICE * (1 - lineitem_filtered.L_DISCOUNT)
     t7 = time.time()
+    print("t7: ", t7)
     lineitem_filtered["CHARGE"] = (
         lineitem_filtered.L_EXTENDEDPRICE * (1 - lineitem_filtered.L_DISCOUNT) * (1 + lineitem_filtered.L_TAX)
     )
@@ -173,6 +179,7 @@ def q01(lineitem):
         "CHARGE",
         "DISC_PRICE",
     ]]
+    print("t8: ", t8)
     t9 = time.time()
     total = gb.agg(
         {
@@ -186,9 +193,10 @@ def q01(lineitem):
             "L_ORDERKEY": "count",
         }
     )
+    print("t9: ", t9)
     t10 = time.time()
     total = total.sort_values(["L_RETURNFLAG", "L_LINESTATUS"])
-    # print(total)
+    print(total)
     t11 = time.time()
     print("Q01 Execution time (s): ", time.time() - t1)
     print("%.3f" % (t2-t1),"%.3f" % (t3-t2),"%.3f" % (t4-t3),"%.3f" % (t5-t4),"%.3f" % (t6-t5),"%.3f" % (t7-t6),"%.3f" % (t8-t7),"%.3f" % (t9-t8),"%.3f" % (t10-t9), "%.3f" % (t11-t10))
