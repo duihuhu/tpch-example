@@ -180,8 +180,8 @@ def q01(lineitem):
         "CHARGE",
         "DISC_PRICE",
     ]]
-    print("t9: ", t9)
     t9 = time.time()
+    print("t9: ", t9)
     total = gb.agg(
         {
             "L_QUANTITY": "sum",
