@@ -48,7 +48,7 @@ for((i=1; i<=1; i++))
 do
     for((j=1; j<=40; j++))
     do
-        python3 -W ignore::DeprecationWarning ray_queries.py $i 'cluster_three'
+        python3 -W ignore::DeprecationWarning ray_queries.py 2& > log$j.txt
         sleep 2
         login_stop
         ray stop
