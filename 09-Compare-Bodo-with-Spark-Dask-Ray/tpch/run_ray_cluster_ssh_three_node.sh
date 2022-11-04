@@ -42,23 +42,24 @@ export RAY_BACKEND_LOG_LEVEL=error
 ulimit -n 65535
 ray start --head --port=6379 --num-cpus 40 --disable-usage-stats  --include-dashboard=false
 login_start
-sleep 2
 login_start1
-sleep 2
+sleep 6
 
-# for((i=1; i<=1; i++))
-# do
-#     for((j=1; j<=40; j++))
-#     do
-#         python3 -W ignore::DeprecationWarning ray_queries.py > log$j.txt
-#         sleep 2
-#         login_stop
-#         ray stop
-#         sleep 3
-#         export RAY_BACKEND_LOG_LEVEL=error
-#         ulimit -n 65535
-#         ray start --head --port=6379 --num-cpus 40 --disable-usage-stats  --include-dashboard=false
-#         login_start
-#         sleep 3
-#     done
-# done 
+for((i=1; i<=1; i++))
+do
+    for((j=1; j<=40; j++))
+    do
+        python3 -W ignore::DeprecationWarning ray_queries.py > log$j.txt
+        sleep 2
+        login_stop
+        login_stop1
+        ray stop
+        sleep 3
+        export RAY_BACKEND_LOG_LEVEL=error
+        ulimit -n 65535
+        ray start --head --port=6379 --num-cpus 40 --disable-usage-stats  --include-dashboard=false
+        login_start
+        login_start1
+        sleep 6
+    done
+done 
