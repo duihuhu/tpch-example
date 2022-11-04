@@ -21,7 +21,7 @@ function login_start1(){
     ./ray start  --address='10.118.0.221:6379' --num-cpus 40 --disable-usage-stats
     exit
 EOF
-
+}
 
 function login_stop(){
     ssh $user@$ip > /dev/null 2>&1 << EOF
