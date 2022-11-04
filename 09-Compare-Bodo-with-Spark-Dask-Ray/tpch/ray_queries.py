@@ -10,6 +10,7 @@ The differences are in:
 
 import ray
 import modin.pandas as pd
+import modin.config as cfg
 import time
 #ray.init()
 ray.init(address = "auto")
@@ -868,4 +869,5 @@ def main():
     run_queries(path)
 
 if __name__ == "__main__":
+    print("NPartitions: ", cfg.NPartitions.get())
     main()
