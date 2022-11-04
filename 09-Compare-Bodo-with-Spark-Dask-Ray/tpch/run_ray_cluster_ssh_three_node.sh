@@ -17,7 +17,6 @@ EOF
 function login_start1(){
     ssh $user@$ip2 > /dev/null 2>&1 << EOF
     ulimit -n 65535
-    cd /usr/local/python3.8.10/bin
     ray start  --address='10.118.0.221:6379' --num-cpus 40 --disable-usage-stats
     exit
 EOF
@@ -33,7 +32,6 @@ EOF
 
 function login_stop1(){
     ssh $user@$ip2 > /dev/null 2>&1 << EOF
-    cd /usr/local/python3.8.10/bin
     ray stop
     exit
 EOF
