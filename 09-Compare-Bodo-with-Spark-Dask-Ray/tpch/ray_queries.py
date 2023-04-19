@@ -13,7 +13,7 @@ import modin.pandas as pd
 import modin.config as cfg
 import time
 #ray.init()
-ray.init(address = "auto")
+ray.init(address = "auto",  _node_ip_address='192.172.200.1')
 
 
 
@@ -865,7 +865,7 @@ def q22(customer, orders):
 
 
 def main():
-    path = "/mnt/data/mdata"
+    path = "/mnt/mdata/mdata1"
     run_queries(path)
 
 if __name__ == "__main__":
