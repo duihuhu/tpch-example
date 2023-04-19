@@ -21,13 +21,13 @@ def run_queries(data_folder):
     # Load the data
     t1 = time.time()
     lineitem = load_lineitem(data_folder)
-    orders = load_orders(data_folder)
-    customer = load_customer(data_folder)
-    nation = load_nation(data_folder)
-    region = load_region(data_folder)
-    supplier = load_supplier(data_folder)
-    part = load_part(data_folder)
-    partsupp = load_partsupp(data_folder)
+    # orders = load_orders(data_folder)
+    # customer = load_customer(data_folder)
+    # nation = load_nation(data_folder)
+    # region = load_region(data_folder)
+    # supplier = load_supplier(data_folder)
+    # part = load_part(data_folder)
+    # partsupp = load_partsupp(data_folder)
     print("hucc Reading time (s): ", time.time())
     # Run the Queries:
     # q01
@@ -165,9 +165,9 @@ def q01(lineitem):
     lineitem_filtered["DISC_PRICE"] = lineitem_filtered.L_EXTENDEDPRICE * (1 - lineitem_filtered.L_DISCOUNT)
     t7 = time.time()
     print("t7: ", t7)
-    lineitem_filtered["CHARGE"] = (
-        lineitem_filtered.L_EXTENDEDPRICE * (1 - lineitem_filtered.L_DISCOUNT) * (1 + lineitem_filtered.L_TAX)
-    )
+    # lineitem_filtered["CHARGE"] = (
+    #     lineitem_filtered.L_EXTENDEDPRICE * (1 - lineitem_filtered.L_DISCOUNT) * (1 + lineitem_filtered.L_TAX)
+    # )
     #ray needs double square bracket
     t8 = time.time()
     print("t8: ", t8)
@@ -178,7 +178,7 @@ def q01(lineitem):
         "L_DISCOUNT",
         "AVG_QTY",
         "AVG_PRICE",
-        "CHARGE",
+        # "CHARGE",
         "DISC_PRICE",
     ]]
     t9 = time.time()
@@ -188,10 +188,10 @@ def q01(lineitem):
             "L_QUANTITY": "sum",
             "L_EXTENDEDPRICE": "sum",
             "DISC_PRICE": "sum",
-            "CHARGE": "sum",
-            "AVG_QTY": "mean",
-            "AVG_PRICE": "mean",
-            "L_DISCOUNT": "mean",
+            # "CHARGE": "sum",
+            # "AVG_QTY": "mean",
+            # "AVG_PRICE": "mean",
+            # "L_DISCOUNT": "mean",
             "L_ORDERKEY": "count",
         }
     )
